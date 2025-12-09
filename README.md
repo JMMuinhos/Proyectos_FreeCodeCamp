@@ -1,1 +1,1 @@
-Conjunto de ejercicios para el desarrollo de aprendizaje de BASES de DATOS de FreeCodeCamp
+Script para el uso de una base de datos de una tienda de  bicicletas, que pregunta al usuario si desea alquilar una bici en particular, identifica al usuario con su nombre y teléfono, y le permite seguir operando incluyendo la devolución lo los productos alquilados.

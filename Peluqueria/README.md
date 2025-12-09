@@ -1,0 +1,2 @@
+En el siguiente caso se trata de crear la base de datos de una peluquería para que se puedan mostrar los servicios que se ofrecen, guardar los clientes con sus números de teléfono, y la cita que tienen pedida, en el archivo instruccions.txt se tienen los requerimientos para pasar el ejercicio. Tener especial cuidado con la salida por terminal como muestra examples.txt, ha de ser el formato de salida idéntico.
+Para hacer este ejercicio se usó la terminal BASH y psql de Visual Studio Code.

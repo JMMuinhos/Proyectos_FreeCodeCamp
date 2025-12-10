@@ -1,0 +1,28 @@
+#! /bin/bash
+
+if [[ $1 == "test" ]]
+then
+  PSQL="psql --username=postgres --dbname=worldcuptest -t --no-align -c"
+else
+  PSQL="psql --username=freecodecamp --dbname=worldcup -t --no-align -c"
+fi
+
+# Do not change code above this line. Use the PSQL variable above to query your database.
+
+# Vaciar tablas antes de insertar (opcional durante desarrollo)
+echo "$($PSQL "TRUNCATE TABLE games, teams RESTART IDENTITY CASCADE;")"
+
+# Leer CSV (asume header en la primera línea)
+tail -n +2 games.csv | while IFS="," read YEAR ROUND WINNER OPPONENT WINNER_GOALS OPPONENT_GOALS
+do
+  # Insertar equipos si no existen (ON CONFLICT DO NOTHING)
+  echo "$($PSQL "INSERT INTO teams(name) VALUES('$WINNER') ON CONFLICT (name) DO NOTHING;")"
+  echo "$($PSQL "INSERT INTO teams(name) VALUES('$OPPONENT') ON CONFLICT (name) DO NOTHING;")"
+
+  # Obtener ids
+  WINNER_ID=$($PSQL "SELECT team_id FROM teams WHERE name='$WINNER';")
+  OPPONENT_ID=$($PSQL "SELECT team_id FROM teams WHERE name='$OPPONENT';")
+
+  # Insertar juego
+  echo "$($PSQL "INSERT INTO games(year, round, winner_id, opponent_id, winner_goals, opponent_goals) VALUES($YEAR, '$ROUND', $WINNER_ID, $OPPONENT_ID, $WINNER_GOALS, $OPPONENT_GOALS);")"
+done

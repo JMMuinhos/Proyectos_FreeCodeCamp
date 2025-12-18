@@ -39,3 +39,4 @@ echo $ELEMENT | while IFS='|' read ATOMIC_NUMBER NAME SYMBOL TYPE MASS MELTING B
 do
   echo "The element with atomic number $ATOMIC_NUMBER is $NAME ($SYMBOL). It's a $TYPE, with a mass of $MASS amu. $NAME has a melting point of $MELTING celsius and a boiling point of $BOILING celsius."
 done
+# Añado esto para poder modificar el .sh 
